@@ -1,0 +1,21 @@
+{
+    "name": "Temporary Bookmark",
+    "version": "1.0.0",
+    "description": "Temporary Bookmark",
+    "manifest_version": 3,
+    "author": "Duy Nguyen",
+    "action": {
+        "default_popup": "index.html",
+        "default_title": "Temporary Bookmark"
+    },
+    "permissions": [
+        "tabs",
+        "activeTab"
+    ],
+    "icons": {
+        "16": "icon.png",
+        "32": "icon.png",
+        "48": "icon.png",
+        "128": "icon.png"
+    }
+}

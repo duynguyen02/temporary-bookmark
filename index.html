@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Temporary Bookmark</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <style>
+        body {
+            min-width: 300px;
+            font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            padding-bottom: 10px;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        a:visited {
+            color: blue;
+        }
+
+        h4 {
+            color:slateblue;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h4>Temporary Bookmark</h4>
+        <p style="text-align: center;font-size: 15px;">Version: 1.0.0</p>
+        <button id="save-url" class="save-url btn btn-primary btn-sm">
+            Save
+        </button>
+        <button id="clear-url" class="clear-url btn btn-danger btn-sm">
+            Clear
+        </button>
+        <!-- <br><br> -->
+        <!-- <input style="width: 100%" type="text" placeholder="Search your bookmark"> -->
+        <br><br>
+        <div class="url-list" id="">
+
+        </div>
+    </div>
+    <script src="/js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
