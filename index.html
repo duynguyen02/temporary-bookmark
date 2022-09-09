@@ -31,17 +31,24 @@
 
 <body>
     <div class="container">
-        <h4>Temporary Bookmark</h4>
-        <p style="text-align: center;font-size: 15px;">Version: 1.0.0</p>
+        <h4 style="margin-bottom: 0">Temporary Bookmark</h4>
+        <p style="text-align: center;font-size: 12px;margin-bottom: 8px">Version: 2.0.0 - DuyNguyen02</p>
+        <div class="page-status"></div>
         <button id="save-url" class="save-url btn btn-primary btn-sm">
             Save
+        </button>
+        <button class="btn btn-primary btn-sm btn-import">
+            Import
+        </button>
+        <button class="btn btn-primary btn-sm btn-export">
+            Export
         </button>
         <button id="clear-url" class="clear-url btn btn-danger btn-sm">
             Clear
         </button>
-        <!-- <br><br> -->
-        <!-- <input style="width: 100%" type="text" placeholder="Search your bookmark"> -->
         <br><br>
+        <input class="form-control input-search" style="width: 100%" type="text" placeholder="Search your bookmark">
+        <br>
         <div class="url-list" id="">
 
         </div>
