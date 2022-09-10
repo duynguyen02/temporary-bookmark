@@ -51,8 +51,6 @@ function init() {
     url_storage = (url_storage_temp == null) ? url_storage_struct : JSON.parse(url_storage_temp)
 
     urls_list = url_storage.urls_list
-
-
 }
 
 
@@ -73,68 +71,19 @@ function getPageStatus() {
         current_page_status = isContainPage(tab.url)
         setPageStatus(current_page_status)
         saveelementSetup(current_page_status)
+        addRecordsToUI(urls_list)
+
 
     })
 }
 
-function saveelementSetup(current_page_status){
-    if (current_page_status){
+function saveelementSetup(current_page_status) {
+    if (current_page_status) {
         $('.save-url').prop('disabled', true);
     }
-    else{
+    else {
         $('.save-url').prop('disabled', false);
     }
-}
-
-function elementSetup() {
-
-    $('.save-url').on('click', function () {
-
-        if (!current_page_status) {
-            temp_model = {
-                "unique_url": current_url,
-                "title": current_title,
-                "time": new Date().toLocaleString()
-            }
-
-            urls_list.push(temp_model)
-
-            urls_list.sort(function (a, b) {
-                return Date(a.time) - Date(b.time);
-            });
-
-
-            url_storage.urls_list = urls_list
-
-            localStorage.setItem(url_storage_key, JSON.stringify(url_storage))
-
-            retrieveRecords()
-        }
-
-    })
-
-    $('.input-search').on('input', function() {
-        let query = $(this).val().toLowerCase()
-        temp_list = urls_list.filter(function (item) {
-            return item.title.toLowerCase().includes(query)
-        })
-            
-        addRecordsToUI(temp_list)
-
-    });
-
-    $('.clear-url').on('click', function () {
-        clearStorage()
-        retrieveRecords()
-    });
-
-    $('.btn-import').on('click', function () {
-        alert("Comming soon!")
-    });
-
-    $('.btn-export').on('click', function () {
-        alert("Comming soon!")
-    });
 }
 
 
@@ -143,19 +92,15 @@ function elementSetup() {
  */
 function retrieveRecords() { //retrieves items in the localStorage
     init()
-
     getPageStatus()
-
-    addRecordsToUI(urls_list)
-
-
 }
 
-function addRecordsToUI(data){
+function addRecordsToUI(data) {
     $('.url-list').html("");
     count = 0
     data.forEach(element => {
-        is_current_page = (element.unique_url === current_url) ? "<span style='color:blue;'>[★]</span>" : ""
+        console.log(current_page_status);
+        is_current_page = (element.unique_url === current_url) ? "<span style='color:red;'>[★]</span>" : ""
         $('.url-list').append(
             `<h6><a class="url-node" href='${element.unique_url}'>${element.title}${is_current_page}</a></h6><button id='${element.unique_url}' class='btn-delete btn btn-warning btn-sm'>Delete</button><br><hr>`
         )
@@ -179,7 +124,7 @@ function addRecordsToUI(data){
 /**
  * deletes item from url_storage
  */
-function removeItem(id) { 
+function removeItem(id) {
 
     // remove url from user choose in urls_list
     urls_list = urls_list.filter(function (item) {
@@ -209,7 +154,56 @@ function clearStorage() { //clears the entire localStorage
 
 
 
+function elementSetup() {
 
+    $('.save-url').on('click', function () {
+
+        if (!current_page_status) {
+            temp_model = {
+                "unique_url": current_url,
+                "title": current_title,
+                "time": new Date().toLocaleString()
+            }
+
+            urls_list.push(temp_model)
+
+            urls_list.reverse(function (a, b) {
+                return (Date(a.time) - Date(b.time));
+            });
+
+
+            url_storage.urls_list = urls_list
+
+            localStorage.setItem(url_storage_key, JSON.stringify(url_storage))
+
+            retrieveRecords()
+        }
+
+    })
+
+    $('.input-search').on('input', function () {
+        let query = $(this).val().toLowerCase()
+        temp_list = urls_list.filter(function (item) {
+            return item.title.toLowerCase().includes(query)
+        })
+
+        addRecordsToUI(temp_list)
+
+    });
+
+    $('.clear-url').on('click', function () {
+        clearStorage()
+        retrieveRecords()
+    });
+
+    $('.btn-import').on('click', function () {
+        alert("Comming soon!")
+    });
+
+    $('.btn-export').on('click', function () {
+        alert("Comming soon!")
+    });
+}
 
 
 /**
